@@ -1,3 +1,10 @@
+# Load private constants, otherwise error
+if [[ -f ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+else
+  echo "Error: missing  ~/.zshrc.local: create a symbolic link to dotfiles/.zshrc.local"
+  return 1
+fi
 
 SESH="tmux-sesh"
 if ! tmux has-session -t $SESH 2>/dev/null; then
@@ -41,7 +48,8 @@ autoload -Uz compinit
 compinit
 
 # zplug - manage plugins
-source /usr/share/zplug/init.zsh
+echo "$PATH_TO_ZPLUG"
+source "$PATH_TO_ZPLUG"
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
