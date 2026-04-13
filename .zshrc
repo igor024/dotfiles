@@ -12,7 +12,7 @@ if ! tmux has-session -t $SESH 2>/dev/null; then
     tmux new-window -t $SESH -n "terminal_0"
     tmux new-window -t $SESH -n "terminal_1"
     tmux new-window -t $SESH -n "ssh"
-    tmux select-window -t $SESH:0
+    tmux select-window -t $SESH:1
 fi
 tmux attach -t $SESH
 
